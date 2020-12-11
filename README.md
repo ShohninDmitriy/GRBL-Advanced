@@ -24,17 +24,20 @@ Edit defaults.h to your needs.
 Added Canned Drill Cycles G81-G83 as additional features. 
 
 #### 5-Axis support
-Added experimental support for rotary axis (5-axis). They are roughly tested amd may contain still errors. Use at own risk!
+Added experimental support for rotary axis (5-axis). They are roughly tested and may contain still errors. Use at own risk!
 
 #### Hard Reset
 0x19 (CTRL-Y): Perform a hard reset.
 
-#### Tool change
-* $14=(tool change mode): 0 = Ignore M6; 1 = Manual Tool Change; 2 = Manual Tool Change + TLS
+#### Tools
+* $14=(tool change mode): 0 = Ignore M6; 1 = Manual Tool Change; 2 = Manual Tool Change + TLS; 3 = Tool Table
 * $P: Save TLS position
 * $T: Confirm tool change
+* $Tx: Print parameters of Tool Nr x (Supports Tool Nr 0-19)
+* $Tx=[0.0:0.0:0.0:0.0] (Save new parameters of Tool x: X, Y, Z, Reserved)
+* $RST=T: Reset all tool tables saved in EEPROM
 
-Uses Dynamic TLO when $14=2
+Uses Dynamic TLO when $14 = (2 or 3)
 
 #### I2C EEPROM
 Added support for external EEPROM (e.g. ST M24C08). Uncomment 'USE_EXT_EEPROM' in Config.h.
@@ -81,7 +84,7 @@ By default, settings are stored in internal flash memory in last sector. First s
 * Flash HEX created in bin/Release
 
 #### Linux
-* Download [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm)) and unpack it to /opt. In makefile update path to toolchain.
+* Download [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm) and unpack it to /opt. In makefile update path to toolchain.
 * Run following commands:
 ```
 sudo apt install build-essential stlink-tools
