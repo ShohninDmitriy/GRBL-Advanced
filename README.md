@@ -1,6 +1,9 @@
 ![GitHub Logo](https://github.com/Schildkroet/GRBL-Advanced/blob/software/doc/en.nucleo-F4.jpg?raw=true)
 
 ***
+[![Build](https://github.com/Schildkroet/GRBL-Advanced/workflows/Build%20Binary/badge.svg)](https://github.com/Schildkroet/GRBL-Advanced/actions)
+
+***
 Grbl-Advanced is a no-compromise, high performance, low cost alternative for CNC milling. This version of Grbl-Advanced runs on a STM32F411 Nucleo Board.
 
 It accepts standards-compliant g-code and has been tested with the output of several CAM tools with no problems. Arcs, circles and helical motion are fully supported, as well as, all other primary g-code commands. Macro functions, variables, and most canned cycles are not supported, but we think GUIs can do a much better job at translating them into straight g-code anyhow.
@@ -25,6 +28,9 @@ Added Canned Drill Cycles G81-G83 as additional features.
 
 #### 5-Axis support
 Added experimental support for rotary axis (5-axis). They are roughly tested and may contain still errors. Use at own risk!
+
+#### Lathe mode
+G33 / G76 (Requires rotary encoder)
 
 #### Hard Reset
 0x19 (CTRL-Y): Perform a hard reset.
@@ -100,7 +106,7 @@ make all flash
 ```
 List of Supported G-Codes in Grbl-Advanced:
   - Non-Modal Commands: G4, G10L2, G10L20, G28, G30, G28.1, G30.1, G53, G92, G92.1
-  - Motion Modes: G0, G1, G2, G3, G38.2, G38.3, G38.4, G38.5, G80
+  - Motion Modes: G0, G1, G2, G3, G33, G38.2, G38.3, G38.4, G38.5, G76 G80
   - Canned Cycles: G81, G82, G83
   - Feed Rate Modes: G93, G94
   - Unit Modes: G20, G21
@@ -108,12 +114,14 @@ List of Supported G-Codes in Grbl-Advanced:
   - Retract Modes: G98, G99
   - Arc IJK Distance Modes: G91.1
   - Plane Select Modes: G17, G18, G19
-  - Tool Length Offset Modes: G43.1, G49
+  - Tool Length Offset Modes: G43, G43.1, G49
   - Cutter Compensation Modes: G40
   - Coordinate System Modes: G54, G55, G56, G57, G58, G59
   - Control Modes: G61
+  - Lathe Modes: G7, G8
+  - Spindle Speed Mode: G96, G97
   - Program Flow: M0, M1, M2, M30*
   - Coolant Control: M7*, M8, M9
   - Spindle Control: M3, M4, M5
-  - Valid Non-Command Words: F, I, J, K, L, N, P, R, S, T, X, Y, Z
+  - Valid Non-Command Words: A, B, D, E, F, H, I, J, K, L, N, P, Q, R, S, T, X, Y, Z
 ```
